@@ -28,7 +28,7 @@ public class DrawGraphTask implements Callable<VBox> {
         LineChart<String, Number> lineChart = new LineChart<>(xAxis, yAxis);
         lineChart.setLegendVisible(false);
         lineChart.setCreateSymbols(true); // Show data points
-        lineChart.setPrefHeight(200);
+        lineChart.setPrefHeight(280);
 
         if (this.currency != null && this.currency.getHistorical() != null) {
             XYChart.Series<String, Number> series = new XYChart.Series<>();

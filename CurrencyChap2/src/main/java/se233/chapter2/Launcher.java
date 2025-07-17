@@ -23,10 +23,10 @@ public class Launcher extends Application {
         primaryStage.setTitle("Currency Watcher");
         primaryStage.setResizable(false);
 
-        currencyList = Initialize.initializeApp(); // Fix variable name
+        currencyList = Initialize.initializeApp();
         initMainPane();
 
-        Scene mainScene = new Scene(mainPane); // Fix syntax
+        Scene mainScene = new Scene(mainPane);
         primaryStage.setScene(mainScene);
         primaryStage.show();
 
@@ -37,9 +37,9 @@ public class Launcher extends Application {
     }
 
     public void initMainPane() throws ExecutionException, InterruptedException {
-        mainPane = new FlowPane(); // Fix syntax
-        mainPane.setStyle("-fx-background-color: #f0f0f0;"); // Add background
-        topPane = new TopPane(); // Fix syntax
+        mainPane = new FlowPane();
+        mainPane.setStyle("-fx-background-color: #f0f0f0;");
+        topPane = new TopPane();
         currencyParentPane = new CurrencyParentPane(currencyList);
 
         mainPane.getChildren().add(topPane);

@@ -12,7 +12,10 @@ class WatchTask implements Callable<Void> {
         List<Currency> allCurrency = Launcher.getCurrencyList();
         String found = "";
         for(int i=0 ; i < allCurrency.size() ; i++) {
-            if (allCurrency.get(i).getWatchRate()!= 0 && allCurrency.get(i).getWatchRate() > allCurrency.get(i).getCurrent().getRate()) {
+            // Modified condition to check if watch is active (true) and watch rate is set (not 0)
+            if (allCurrency.get(i).getWatch() == true &&
+                    allCurrency.get(i).getWatchRate() != 0 &&
+                    allCurrency.get(i).getWatchRate() > allCurrency.get(i).getCurrent().getRate()) {
                 if(found.equals("")) {
                     found = allCurrency.get(i).getShortCode();
                 } else {

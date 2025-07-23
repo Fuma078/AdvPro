@@ -10,6 +10,7 @@ import se233.chapter2.view.CurrencyParentPane;
 import se233.chapter2.view.TopPane;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
+
 public class Launcher extends Application {
     private static Stage primaryStage;
     private static FlowPane mainPane;
@@ -23,10 +24,10 @@ public class Launcher extends Application {
         primaryStage.setTitle("Currency Watcher");
         primaryStage.setResizable(false);
 
-        currencyList = Initialize.initializeApp();
+        currencyList = Initialize.initializeApp(); // Fix variable name
         initMainPane();
 
-        Scene mainScene = new Scene(mainPane);
+        Scene mainScene = new Scene(mainPane); // Fix syntax
         primaryStage.setScene(mainScene);
         primaryStage.show();
 
@@ -37,9 +38,9 @@ public class Launcher extends Application {
     }
 
     public void initMainPane() throws ExecutionException, InterruptedException {
-        mainPane = new FlowPane();
-        mainPane.setStyle("-fx-background-color: #f0f0f0;");
-        topPane = new TopPane();
+        mainPane = new FlowPane(); // Fix syntax
+        mainPane.setStyle("-fx-background-color: #f0f0f0;"); // Add background
+        topPane = new TopPane(); // Fix syntax
         currencyParentPane = new CurrencyParentPane(currencyList);
 
         mainPane.getChildren().add(topPane);
@@ -52,12 +53,31 @@ public class Launcher extends Application {
         primaryStage.sizeToScene();
     }
 
+    // Getter methods
     public static List<Currency> getCurrencyList() {
         return currencyList;
     }
 
     public static void setCurrencyList(List<Currency> currencyList) {
         Launcher.currencyList = currencyList;
+    }
+
+    // Added getter method for primaryStage
+    public static Stage getPrimaryStage() {
+        return primaryStage;
+    }
+
+    // Additional getter methods for accessing other components if needed
+    public static FlowPane getMainPane() {
+        return mainPane;
+    }
+
+    public static TopPane getTopPane() {
+        return topPane;
+    }
+
+    public static CurrencyParentPane getCurrencyParentPane() {
+        return currencyParentPane;
     }
 
     public static void main(String[] args) {

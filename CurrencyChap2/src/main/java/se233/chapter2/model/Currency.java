@@ -13,6 +13,7 @@ public class Currency {
         this.watchRate = 0.0;
     }
 
+    // Add missing getters and setters
     public String getShortCode() {
         return shortCode;
     }

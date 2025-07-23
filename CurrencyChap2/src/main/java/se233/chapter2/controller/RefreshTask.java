@@ -12,7 +12,7 @@ public class RefreshTask extends Task<Void> {
                 Thread.sleep((long)(60 * 1e3));
             } catch (InterruptedException e) {
                 System.out.println("Encountered an interrupted exception");
-                break;
+                break; // Exit the loop on interruption
             }
 
             Platform.runLater(new Runnable() {

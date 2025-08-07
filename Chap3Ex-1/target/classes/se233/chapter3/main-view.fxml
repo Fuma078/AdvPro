@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<BorderPane xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="se233.chapter3.controller.MainViewController">
+    <top>
+        <MenuBar fx:id="menuBar">
+            <menus>
+                <Menu mnemonicParsing="false" text="File">
+                    <items>
+                        <MenuItem mnemonicParsing="false" onAction="#handleCloseAction" text="Close" />
+                    </items>
+                </Menu>
+            </menus>
+        </MenuBar>
+    </top>
+    <center>
+        <FlowPane>
+            <children>
+                <AnchorPane prefHeight="240.0" prefWidth="200.0">
+                    <children>
+                        <Label layoutX="20.0" layoutY="20.0" text="Drop a PDF file below:" />
+                        <ListView fx:id="inputListView" layoutX="10" layoutY="45.0" prefHeight="150"
+                                  prefWidth="180" style="-fx-border-color: black;"/>
+                        <Button fx:id="startButton" layoutX="20.0" layoutY="200.0" prefHeight="20.0"
+                                prefWidth="156.0" text="Start Indexing"/>
+                    </children>
+                </AnchorPane>
+                <Pane>
+                    <children>
+                        <ListView fx:id="listView" prefHeight="240.0" prefWidth="200.0" />
+                    </children>
+                </Pane>
+            </children>
+        </FlowPane>
+    </center>
+</BorderPane>

@@ -39,7 +39,6 @@ public class GameLoopTest {
         ReflectionHelper.setField(gameStage, "key", KeyCode.RIGHT);
         ReflectionHelper.setField(snake, "direction", Direction.DOWN);
 
-        // Only call keyProcess for this test
         ReflectionHelper.invokeMethod(gameLoop, "keyProcess", new Class<?>[0]);
 
         Direction currentDirection = (Direction) ReflectionHelper.getField(snake, "direction");
@@ -53,17 +52,14 @@ public class GameLoopTest {
 
         clockTickHelper();
 
-        // Snake should have grown
         assertTrue(snake.getLength() > initialLength);
 
-        // Food should have respawned to a different position
         clockTickHelper();
         assertNotEquals(food.getPosition(), initialFoodPosition);
     }
 
     @Test
     public void collided_snakeHitBorder_shouldDie() throws Exception{
-        // Move snake to position (0,0) and set direction LEFT to hit border
         ReflectionHelper.setField(gameStage, "key", KeyCode.LEFT);
         ReflectionHelper.setField(snake, "direction", Direction.LEFT);
 
@@ -86,4 +82,5 @@ public class GameLoopTest {
 
         verify(mockGameStage, times(3)).render(mockSnake, mockFood);
     }
+
 }

@@ -10,6 +10,9 @@
   <version>1.0-SNAPSHOT</version>
   <packaging>jar</packaging>
 
+  <name>Snake Game</name>
+  <description>Snake Game with JavaFX and Unit Testing</description>
+
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>21</maven.compiler.source>
@@ -17,6 +20,7 @@
   </properties>
 
   <dependencies>
+    <!-- JavaFX Dependencies -->
     <dependency>
       <groupId>org.openjfx</groupId>
       <artifactId>javafx-controls</artifactId>
@@ -28,6 +32,7 @@
       <version>17.0.2</version>
     </dependency>
 
+    <!-- Log4j2 Dependencies -->
     <dependency>
       <groupId>org.apache.logging.log4j</groupId>
       <artifactId>log4j-core</artifactId>
@@ -44,6 +49,7 @@
       <version>2.20.0</version>
     </dependency>
 
+    <!-- JUnit 5 Testing Dependencies -->
     <dependency>
       <groupId>org.junit.jupiter</groupId>
       <artifactId>junit-jupiter-api</artifactId>
@@ -62,7 +68,8 @@
       <version>1.9.2</version>
       <scope>test</scope>
     </dependency>
-    <!-- Replace mockito-core with mockito-inline -->
+
+    <!-- Mockito for Mocking in Tests -->
     <dependency>
       <groupId>org.mockito</groupId>
       <artifactId>mockito-inline</artifactId>
@@ -73,6 +80,7 @@
 
   <build>
     <plugins>
+      <!-- Maven Compiler Plugin -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
@@ -83,6 +91,30 @@
         </configuration>
       </plugin>
 
+      <!-- Maven Surefire Plugin for Running Tests -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>3.0.0</version>
+        <configuration>
+          <argLine>
+            --add-opens java.base/java.lang=ALL-UNNAMED
+            --add-opens java.base/java.util=ALL-UNNAMED
+          </argLine>
+        </configuration>
+      </plugin>
+
+      <!-- JavaFX Maven Plugin for Development -->
+      <plugin>
+        <groupId>org.openjfx</groupId>
+        <artifactId>javafx-maven-plugin</artifactId>
+        <version>0.0.8</version>
+        <configuration>
+          <mainClass>se233.chapter6.Launcher</mainClass>
+        </configuration>
+      </plugin>
+
+      <!-- Maven Shade Plugin for Creating Executable Fat JAR -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-shade-plugin</artifactId>
@@ -95,9 +127,12 @@
             </goals>
             <configuration>
               <transformers>
+                <!-- Set Main Class in Manifest -->
                 <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
                   <mainClass>se233.chapter6.JarLauncher</mainClass>
                 </transformer>
+                <!-- Handle Log4j2 Plugins Properly -->
+                <transformer implementation="org.apache.maven.plugins.shade.resource.Log4j2PluginsCacheFileTransformer"/>
               </transformers>
               <filters>
                 <filter>
@@ -112,12 +147,14 @@
             </configuration>
           </execution>
         </executions>
-      </plugin>
-
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-surefire-plugin</artifactId>
-        <version>3.0.0</version>
+        <dependencies>
+          <!-- Log4j2 Transformer Extension -->
+          <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-transform-maven-shade-plugin-extensions</artifactId>
+            <version>2.20.0</version>
+          </dependency>
+        </dependencies>
       </plugin>
     </plugins>
   </build>
